@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: simple-java-app
+name: simple-java-app-deployment
 spec:
 replicas: 1
 selector:
@@ -23,11 +23,12 @@ ports:
 apiVersion: v1
 kind: Service
 metadata:
-name: simple-java-service
+name: simple-java-app-service
 spec:
 selector:
 app: simple-java-app
 ports:
-- port: 80
+- protocol: TCP
+port: 80
 targetPort: 8080
 type: NodePort
