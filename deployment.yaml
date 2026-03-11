@@ -1,9 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: simple-java-app-deployment
-labels:
-app: simple-java-app
+name: simple-java-app
 spec:
 replicas: 1
 selector:
@@ -17,7 +15,6 @@ spec:
 containers:
 - name: simple-java-app
 image: ramlingams/simple-java-app:latest
-imagePullPolicy: Always
 ports:
 - containerPort: 8080
 
@@ -26,13 +23,11 @@ ports:
 apiVersion: v1
 kind: Service
 metadata:
-name: simple-java-app-service
+name: simple-java-service
 spec:
 selector:
 app: simple-java-app
 ports:
-
-* protocol: TCP
-  port: 80
-  targetPort: 8080
-  type: NodePort
+- port: 80
+targetPort: 8080
+type: NodePort
